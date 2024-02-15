@@ -1,9 +1,9 @@
 ﻿  main.cpp
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(79,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(130,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(131,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(135,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(136,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(137,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(138,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(173,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(233,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(234,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(238,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(239,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(240,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\benri\source\repos\COMP3015 OpenGL\src\main.cpp(241,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   COMP3015 OpenGL.vcxproj -> C:\Users\benri\source\repos\COMP3015 OpenGL\x64\Debug\COMP3015 OpenGL.exe

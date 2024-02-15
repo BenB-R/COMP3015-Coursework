@@ -32,7 +32,10 @@
     <ClCompile Include="src\mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shaders\stb_implementation.cpp">
+    <ClCompile Include="src\skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_implementation.cpp">
       <Filter>Source Files\setup</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,12 +52,21 @@
     <ClInclude Include="include\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_vert.vs">
       <Filter>Shader Files</Filter>
     </None>
     <None Include="shaders\basic_frag.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="shaders\skybox_frag.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="shaders\skybox_vert.vs">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

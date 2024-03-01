@@ -89,7 +89,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // GLFW window creation
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Your Project Name", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Forest Scene", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -121,13 +121,35 @@ int main()
 #pragma endregion
 
 #pragma region floor
+    unsigned int planeTexture;
+    glGenTextures(1, &planeTexture);
+    glBindTexture(GL_TEXTURE_2D, planeTexture);
+    // Set texture wrapping/filtering options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // Load and generate the texture
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load("assets/textures/grass.jpg", &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
+
     // Step 1: Plane Vertex Data
     float planeVertices[] = {
         // positions            // normals (optional for lighting) // texture coords (optional)
-        200.0f, 0.0f, 200.0f,    0.0f, 1.0f, 0.0f,                 1.0f, 1.0f,   // top right
-        -200.0f, 0.0f, 200.0f,   0.0f, 1.0f, 0.0f,                 0.0f, 1.0f,   // top left
-        -200.0f, 0.0f, -200.0f,  0.0f, 1.0f, 0.0f,                 0.0f, 0.0f,   // bottom left
-        200.0f, 0.0f, -200.0f,   0.0f, 1.0f, 0.0f,                 1.0f, 0.0f    // bottom right
+        500.0f, 0.0f, 500.0f,    0.0f, 1.0f, 0.0f,                 100.0f, 100.0f,   // top right
+        -500.0f, 0.0f, 500.0f,   0.0f, 1.0f, 0.0f,                 0.0f, 100.0f,   // top left
+        -500.0f, 0.0f, -500.0f,  0.0f, 1.0f, 0.0f,                 0.0f, 0.0f,   // bottom left
+        500.0f, 0.0f, -500.0f,   0.0f, 1.0f, 0.0f,                 100.0f, 0.0f    // bottom right
     };
 
     unsigned int planeIndices[] = {
@@ -165,6 +187,7 @@ int main()
 #pragma endregion
 
     treePositions = generateTreePositions(NUM_TREES, EXCLUSION_RADIUS, MAX_SPAWN_RADIUS, DENSITY_INCREASE_END_RADIUS);
+    glm::vec3 firePos(15.0f, 5.0f, 3.0f); // Light position at the center of the scene
 
     // Main render loop
     while (!glfwWindowShouldClose(window))
@@ -184,7 +207,7 @@ int main()
         // Camera/View transformation
         // Set up camera and projection matrices (common for both crystals and cave)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
-            (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+            (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 500.0f);
         glm::mat4 view = camera.getViewMatrix();
 
         skybox.Draw(view, projection);
@@ -195,6 +218,9 @@ int main()
         basicShader.setMat4("projection", projection);
         basicShader.setMat4("view", view);
 
+        basicShader.setVec3("lightPos", firePos);
+        basicShader.setVec3("viewPos", camera.Position);
+
         // Render Tree1
         for (const auto& position : treePositions) {
             glm::mat4 model = glm::mat4(1.0f);
@@ -204,13 +230,17 @@ int main()
             basicShader.setMat4("model", model);
             tree1.Draw(basicShader, model); // Draw each tree
         }
-
+#pragma region plane
+        glActiveTexture(GL_TEXTURE0); // Activate the texture unit before binding
+        glBindTexture(GL_TEXTURE_2D, planeTexture); // Bind the plane's texture
+        basicShader.setInt("texture_diffuse1", 0); // Set the texture uniform if required
         glBindVertexArray(planeVAO);
         glm::mat4 model = glm::mat4(1.0f);
         // Adjust model matrix for the plane if necessary
         basicShader.setMat4("model", model);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+#pragma endregion
 
         // Swap buffers and poll IO events
         glfwSwapBuffers(window);

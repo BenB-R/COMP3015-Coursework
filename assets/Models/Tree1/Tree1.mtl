@@ -1,22 +1,3 @@
-# Blender 4.0.2 MTL File: 'None'
-# www.blender.org
-
-newmtl Bark
-Ns 0.000000
-Ka 0.331818 0.331818 0.331818
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 3
-map_Kd Bark.PNG
-
-newmtl Leaves
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd leaves.jpg
+version https://git-lfs.github.com/spec/v1
+oid sha256:1eca7c08c07074f86a9807f4e0c181d171d0ace6b1d92149ddb9b842019089f0
+size 379

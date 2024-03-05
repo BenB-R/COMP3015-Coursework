@@ -1,14 +1,3 @@
-#version 330 core
-layout (location = 0) in vec3 aPos;
-
-out vec3 TexCoords;
-
-uniform mat4 projection;
-uniform mat4 view;
-
-void main()
-{
-    TexCoords = aPos;
-    vec4 pos = projection * view * vec4(aPos, 1.0);
-    gl_Position = pos.xyww; // Keep the skybox at the same depth to avoid depth testing issues
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9bdca900337f5c29efe39d7842c16df93f371653d47110c52cd5763354c0957f
+size 279

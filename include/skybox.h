@@ -1,30 +1,3 @@
-#ifndef SKYBOX_H
-#define SKYBOX_H
-
-#include <vector>
-#include <string>
-
-#include <glad/glad.h>
-#include <glm/glm.hpp>
-
-#include "../include/shader.h"
-
-class Skybox
-{
-public:
-    Skybox(const std::vector<std::string>& faces);
-    ~Skybox();
-
-    void LoadTextures();
-    void Draw(const glm::mat4& view, const glm::mat4& projection);
-
-private:
-    Shader skyboxShader;
-    unsigned int cubemapTexture;
-    unsigned int VAO, VBO;
-    std::vector<std::string> faces;
-
-    void setupSkybox();
-};
-
-#endif
+version https://git-lfs.github.com/spec/v1
+oid sha256:e7e673793c32bf2228d327436c2bd9542201be4dc3580c661912fa8e63164f6b
+size 723
